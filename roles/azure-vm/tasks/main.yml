@@ -60,5 +60,3 @@
       publisher: Canonical
       sku: '18.04-LTS'
       version: latest
-- name: Register Virtual Machine IP Address
-  set_fact: vm_ip="{{ output_ip_address.state.ip_address }}"

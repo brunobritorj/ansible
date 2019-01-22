@@ -11,5 +11,6 @@
   connection: local
   gather_facts: False
   tasks:
-  - debug:
-    msg: "The public IP"
+  - service:
+      name: "apache2"
+      state: restarted
