@@ -9,3 +9,5 @@
     apt: name=php state=latest
   - name: Install Biblioteca Apache-PHP
     apt: name=libapache2-mod-php state=latest
+  - name: Install Biblioteca PHP-MySQL
+    apt: name=php-mysql state=latest
