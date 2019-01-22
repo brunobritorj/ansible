@@ -25,4 +25,8 @@
   roles:
   - azure-resourcegroup
   - azure-vm
+
+- hosts: "{{ output_ip_address.state.ip_address }}"
+  sudo: yes
+  roles:
   - phpipam
