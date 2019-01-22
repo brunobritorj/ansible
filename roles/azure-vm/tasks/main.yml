@@ -1,0 +1,7 @@
+---
+  name: Create Azure Virtual Machine
+  tasks:
+  - name: Create resource group
+    azure_rm_resourcegroup:
+      name: "{{ resource_group }}"
+      location: "{{ location }}"
