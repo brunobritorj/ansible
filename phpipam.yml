@@ -28,12 +28,11 @@
 
   tasks:
   - add_host:
-      hostname: "{{ output_ip_address.state.ip_address }}"
+      hostname: "{{ vm_ip }}"
       groups: "{{ host_group }}"
       ansible_user: azureuser
       ansible_become: true
 
 - hosts: "{{ host_group }}"
-  sudo: yes
   roles:
   - phpipam

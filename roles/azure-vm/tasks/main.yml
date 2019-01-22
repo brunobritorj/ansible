@@ -60,9 +60,5 @@
       publisher: Canonical
       sku: '18.04-LTS'
       version: latest
-- name: Add host to inventory
-  add_host:
-    hostname: "{{ output_ip_address.state.ip_address }}"
-    groups: "{{ host_group }}"
-    ansible_user: azureuser
-    ansible_become: true
+- name: Register Virtual Machine IP Address
+  set_fact: vm_ip="{{ output_ip_address.state.ip_address }}"
