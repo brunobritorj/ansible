@@ -6,3 +6,10 @@
   - add_host:
       hostname: novohostname
       groups: novogrupo
+
+- hosts: novogrupo
+  connection: local
+  gather_facts: False
+  tasks:
+  - debug:
+    msg: "The public IP"
