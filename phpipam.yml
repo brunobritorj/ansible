@@ -25,4 +25,4 @@
   roles:
   - azure-resourcegroup
   - azure-vm
-  - azure-mysql
+  - phpipam
