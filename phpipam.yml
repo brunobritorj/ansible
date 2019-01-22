@@ -4,7 +4,3 @@
   gather_facts: False
   roles:
   - azure-vm
-
-  tasks:
-  - debug:
-    msg: "Mensagem intermediaria"
