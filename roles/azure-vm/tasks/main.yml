@@ -1,74 +1,72 @@
 ---
-  name: Create Azure Virtual Machine
-  tasks:
-  - name: Create resource group
-    azure_rm_resourcegroup:
-      name: "{{ resource_group }}"
-      location: "{{ location }}"
-  - name: Create virtual network
-    azure_rm_virtualnetwork:
-      resource_group: "{{ resource_group }}"
-      name: "{{ vnet_name }}"
-      address_prefixes: "{{ vnet_prefix }}"
-  - name: Add subnet
-    azure_rm_subnet:
-      resource_group: "{{ resource_group }}"
-      name: "{{ subnet_name }}"
-      address_prefix: "{{ subnet_prefix }}"
-      virtual_network: "{{ vnet_name }}"
-  - name: Create public IP address
-    azure_rm_publicipaddress:
-      resource_group: "{{ resource_group }}"
-      allocation_method: Static
-      name: "{{ srv_pub_ip }}"
-    register: output_ip_address
-  - name: Dump public IP for VM which will be created
-    debug:
-      msg: "The public IP is {{ output_ip_address.state.ip_address }}."
-  - name: Create Network Security Group that allows SSH
-    azure_rm_securitygroup:
-      resource_group: "{{ resource_group }}"
-      name: "{{ net_sec_group }}"
-      rules:
-        - name: SSH
-          protocol: Tcp
-          destination_port_range: 22
-          access: Allow
-          priority: 1001
-          direction: Inbound
-        - name: HTTP
-          protocol: Tcp
-          destination_port_range: 80
-          access: Allow
-          priority: 1002
-          direction: Inbound
-  - name: Create virtual network inteface card
-    azure_rm_networkinterface:
-      resource_group: "{{ resource_group }}"
-      name: "{{ srv_nic }}"
-      virtual_network: "{{ vnet_name }}"
-      subnet: "{{ subnet_name }}"
-      public_ip_name: "{{ srv_pub_ip }}"
-      security_group: "{{ net_sec_group }}"
-  - name: Create VM
-    azure_rm_virtualmachine:
-      resource_group: "{{ resource_group }}"
-      name: "{{ svr_name }}"
-      vm_size: "{{ vm_size }}"
-      admin_username: azureuser
-      ssh_password_enabled: false
-      ssh_public_keys:
-        - path: /home/azureuser/.ssh/authorized_keys
-          key_data: "{{ ssh_pubkey }}"
-      network_interfaces: "{{ srv_nic }}"
-      image:
-        offer: UbuntuServer
-        publisher: Canonical
-        sku: '18.04-LTS'
-        version: latest
-  - name: Add host to inventory
-    add_host:
-      hostname: "{{ output_ip_address.state.ip_address }}"
-      groups: "{{ host_group }}"
-      ansible_user: azureuser
-      ansible_become: true
+- name: Create resource group
+  azure_rm_resourcegroup:
+    name: "{{ resource_group }}"
+    location: "{{ location }}"
+- name: Create virtual network
+  azure_rm_virtualnetwork:
+    resource_group: "{{ resource_group }}"
+    name: "{{ vnet_name }}"
+    address_prefixes: "{{ vnet_prefix }}"
+- name: Add subnet
+  azure_rm_subnet:
+    resource_group: "{{ resource_group }}"
+    name: "{{ subnet_name }}"
+    address_prefix: "{{ subnet_prefix }}"
+    virtual_network: "{{ vnet_name }}"
+- name: Create public IP address
+  azure_rm_publicipaddress:
+    resource_group: "{{ resource_group }}"
+    allocation_method: Static
+    name: "{{ srv_pub_ip }}"
+  register: output_ip_address
+- name: Dump public IP for VM which will be created
+  debug:
+    msg: "The public IP is {{ output_ip_address.state.ip_address }}."
+- name: Create Network Security Group that allows SSH
+  azure_rm_securitygroup:
+    resource_group: "{{ resource_group }}"
+    name: "{{ net_sec_group }}"
+    rules:
+      - name: SSH
+        protocol: Tcp
+        destination_port_range: 22
+        access: Allow
+        priority: 1001
+        direction: Inbound
+      - name: HTTP
+        protocol: Tcp
+        destination_port_range: 80
+        access: Allow
+        priority: 1002
+        direction: Inbound
+- name: Create virtual network inteface card
+  azure_rm_networkinterface:
+    resource_group: "{{ resource_group }}"
+    name: "{{ srv_nic }}"
+    virtual_network: "{{ vnet_name }}"
+    subnet: "{{ subnet_name }}"
+    public_ip_name: "{{ srv_pub_ip }}"
+    security_group: "{{ net_sec_group }}"
+- name: Create VM
+  azure_rm_virtualmachine:
+    resource_group: "{{ resource_group }}"
+    name: "{{ svr_name }}"
+    vm_size: "{{ vm_size }}"
+    admin_username: azureuser
+    ssh_password_enabled: false
+    ssh_public_keys:
+      - path: /home/azureuser/.ssh/authorized_keys
+        key_data: "{{ ssh_pubkey }}"
+    network_interfaces: "{{ srv_nic }}"
+    image:
+      offer: UbuntuServer
+      publisher: Canonical
+      sku: '18.04-LTS'
+      version: latest
+- name: Add host to inventory
+  add_host:
+    hostname: "{{ output_ip_address.state.ip_address }}"
+    groups: "{{ host_group }}"
+    ansible_user: azureuser
+    ansible_become: true
