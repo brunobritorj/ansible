@@ -1,0 +1,20 @@
+---
+resource_group: VanHackChallenge01
+location: eastus
+vnet_name: net_vh01
+vnet_prefix: "10.0.0.0/16"
+subnet_name: subnet_vh01
+subnet_prefix: "10.0.1.0/24"
+srv_pub_ip: pub_ip_vh01
+net_sec_group : nsg_vh01
+srv_nic : nic_vh01
+svr_name: srvwebapp
+vm_size: Standard_DS1_v2
+ssh_pubkey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvlFxf2CLiYnpdiZe0ygk1IDwrJ/oZiVOS30WrrvxkZj+zHzxT014vqG2ZE0dUmzJQgn0hQ/5NxSZ5z9+El448WRZg9yyOU+gZhf7G+2ynn3xTY14UPTQRo9FnwV+jrlzTdthiOWgPhN2RZ6V0UJLHYHOoqUdYgoRrkcm9SV1a3HXcM36agq9UJpDCG8j+CpSd+/+CUseDC2kvTQ9xFCEUfjYPBidFLQluGABb4+nV63m+uGlBHIv9cRfQAjgtsBYBdY4+lIKml8PoTxhoUMhYgHwXwKzfSBqZI8nKXLviJvwUA9F6PdtOwbKK7gKHyvhy4pYOSM1ENTt1GB/fGjJP bruno@cc-3d51baa3-c57dccdf4-nx26m'
+mysqlserver_name: vhdbserver
+mysqldb_name: vhdb
+admin_username: vhdbadmin
+admin_password: VanhackCha19
+cdn_profile: cndpro_srvwebapp
+cdn_endpoint: cndend_srvwebapp
+host_group: phpipam
