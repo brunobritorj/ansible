@@ -23,4 +23,6 @@
     cdn_endpoint: cndend_srvwebapp
     host_group: phpipam
   roles:
+  - azure-resourcegroup
   - azure-vm
+  - azure-mysql
