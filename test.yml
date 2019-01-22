@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+  - add_host:
+      hostname: novohostname
+      groups: novogrupo
