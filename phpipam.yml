@@ -3,19 +3,19 @@
   connection: local
   gather_facts: False
   vars:
-    resource_group: rg-001
+    resource_group: rg001
     location: eastus
     vnet_name: "net-10.0.0.0-16"
     vnet_prefix: "10.0.0.0/16"
     subnet_name: "subnet-10.0.0.1-24"
     subnet_prefix: "10.0.1.0/24"
-    srv_pub_ip: pip-001
-    net_sec_group : nsg-001
-    srv_nic : nic-001
+    srv_pub_ip: pip001
+    net_sec_group : nsg001
+    srv_nic : nic001
     svr_name: srv001
     vm_size: Standard_DS1_v2
     ssh_pubkey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvlFxf2CLiYnpdiZe0ygk1IDwrJ/oZiVOS30WrrvxkZj+zHzxT014vqG2ZE0dUmzJQgn0hQ/5NxSZ5z9+El448WRZg9yyOU+gZhf7G+2ynn3xTY14UPTQRo9FnwV+jrlzTdthiOWgPhN2RZ6V0UJLHYHOoqUdYgoRrkcm9SV1a3HXcM36agq9UJpDCG8j+CpSd+/+CUseDC2kvTQ9xFCEUfjYPBidFLQluGABb4+nV63m+uGlBHIv9cRfQAjgtsBYBdY4+lIKml8PoTxhoUMhYgHwXwKzfSBqZI8nKXLviJvwUA9F6PdtOwbKK7gKHyvhy4pYOSM1ENTt1GB/fGjJP bruno@cc-3d51baa3-c57dccdf4-nx26m'
-    mysqlserver_name: dbsrv001
+    mysqlserver_name: mycompany-dbsrv001
     mysqldb_name: db
     admin_username: dbadmin
     admin_password: Chall!19
@@ -26,3 +26,6 @@
   - azure-resourcegroup
   - azure-vm
   - azure-mysql
+- name: Dump public IP for VM which will be created
+  debug:
+    msg: "The public IP is {{ output_ip_address.state.ip_address }}."
