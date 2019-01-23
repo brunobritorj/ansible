@@ -7,6 +7,7 @@
   roles:
   - azure-resourcegroup
   - azure-vm
+  - azure-mysql
 
   tasks:
   - add_host:
