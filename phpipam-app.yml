@@ -2,5 +2,4 @@
   vars_files:
     - vars-phpipam.yml
   roles:
-  - webserver-apachephp
   - phpipam
