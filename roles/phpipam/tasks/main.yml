@@ -2,28 +2,28 @@
 - name: Clone phpipam files from Git
   git:
     repo: https://github.com/phpipam/phpipam.git
-    dest: /var/www/html/phpipam
+    dest: /var/www/phpipam
 - name: Copy database config file
   shell: |
-    sudo cp /var/www/html/phpipam/config.dist.php /var/www/html/phpipam/config.php
+    sudo cp /var/www/phpipam/config.dist.php /var/www/phpipam/config.php
     exit 0
 - name: Edit db config file - DB host
   replace:
-    path: /var/www/html/phpipam/config.php
+    path: /var/www/phpipam/config.php
     regexp: "^$db['host'] = 'localhost';"
     replace: "$db['host'] = '{{ mysqlserver_name }}.mysql.database.azure.com';"
 - name: Edit db config file - DB Username
   replace:
-    path: /var/www/html/phpipam/config.php
+    path: /var/www/phpipam/config.php
     regexp: "^$db['user'] = 'phpipam';"
     replace: "$db['user'] = '{{ admin_username }}';"
 - name: Edit db config file - Password
   replace:
-    path: /var/www/html/phpipam/config.php
+    path: /var/www/phpipam/config.php
     regexp: "^$db['pass'] = 'phpipamadmin';"
     replace: "$db['pass'] = '{{ admin_password }}';"
 - name: Edit db config file - DB name
   replace:
-    path: /var/www/html/phpipam/config.php
+    path: /var/www/phpipam/config.php
     regexp: "^$db['name'] = 'phpipam';="
     replace: "$db['name'] = '{{ mysqldb_name }}';"

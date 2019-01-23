@@ -3,7 +3,21 @@
   apt: name=apache2 state=latest
 - name: Install PHP
   apt: name=php state=latest
-- name: Install Biblioteca Apache-PHP
+- name: Install libapache2-mod-php
   apt: name=libapache2-mod-php state=latest
-- name: Install Biblioteca PHP-MySQL
+- name: Install php-mysql
   apt: name=php-mysql state=latest
+- name: Install php-gmp
+  apt: name=php-gmp state=latest
+- name: Install php-mbstring
+  apt: name=php-mbstring state=latest
+- name: Install php-gd
+  apt: name=php-gd state=latest
+- name: Install php-pear
+  apt: name=php-pear state=latest
+#- apt: name=pdo_mysql state=latest
+- name: Enable mod_rewrite and restart apache
+  shell: |
+    sudo a2enmod rewrite
+    sudo systemctl restart apache2
+    exit 0
