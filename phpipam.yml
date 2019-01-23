@@ -35,4 +35,5 @@
 
 - hosts: "new-azurevm"
   roles:
+  - webserver-apachephp
   - phpipam

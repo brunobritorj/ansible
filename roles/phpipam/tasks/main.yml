@@ -1,9 +1,5 @@
 ---
-- name: Install Apache
-  apt: name=apache2 state=latest
-- name: Install PHP
-  apt: name=php state=latest
-- name: Install Biblioteca Apache-PHP
-  apt: name=libapache2-mod-php state=latest
-- name: Install Biblioteca PHP-MySQL
-  apt: name=php-mysql state=latest
+- name: Clone phpipam files from Git
+  git:
+    repo: https://github.com/phpipam/phpipam.git
+    dest: /var/www/phpipam
