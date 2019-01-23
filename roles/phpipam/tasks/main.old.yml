@@ -4,9 +4,9 @@
     repo: https://github.com/phpipam/phpipam.git
     dest: /var/www/phpipam
 - name: Copy database config file
-  shell: |
-    sudo cp /var/www/phpipam/config.dist.php /var/www/phpipam/config.php
-    exit 0
+  copy:
+    src: /var/www/phpipam/config.dist.php
+    dest: /var/www/phpipam/config.php
 - name: Edit db config file - DB host
   lineinfile:
     path: /var/www/phpipam/config.php
