@@ -7,23 +7,28 @@
   shell: |
     sudo cp /var/www/phpipam/config.dist.php /var/www/phpipam/config.php
     exit 0
+- name: Change apache website root folder
+  replace:
+    path: /etc/apache2/sites-available/000-default.conf
+    regexp: "DocumentRoot /var/www/html"
+    replace: "DocumentRoot /var/www/phpipam"
 - name: Edit db config file - DB host
   replace:
     path: /var/www/phpipam/config.php
-    regexp: "^$db['host'] = 'localhost';"
-    replace: "$db['host'] = '{{ mysqlserver_name }}.mysql.database.azure.com';"
+    regexp: "host'] = 'localhost';"
+    replace: "host'] = '{{ mysqlserver_name }}.mysql.database.azure.com';"
 - name: Edit db config file - DB Username
   replace:
     path: /var/www/phpipam/config.php
-    regexp: "^$db['user'] = 'phpipam';"
-    replace: "$db['user'] = '{{ admin_username }}';"
+    regexp: "user'] = 'phpipam';"
+    replace: "user'] = '{{ admin_username }}@{{ mysqlserver_name }}.mysql.database.azure.com';"
 - name: Edit db config file - Password
   replace:
     path: /var/www/phpipam/config.php
-    regexp: "^$db['pass'] = 'phpipamadmin';"
-    replace: "$db['pass'] = '{{ admin_password }}';"
+    regexp: "pass'] = 'phpipamadmin';"
+    replace: "pass'] = '{{ admin_password }}';"
 - name: Edit db config file - DB name
   replace:
     path: /var/www/phpipam/config.php
-    regexp: "^$db['name'] = 'phpipam';="
-    replace: "$db['name'] = '{{ mysqldb_name }}';"
+    regexp: "name'] = 'phpipam';="
+    replace: "name'] = '{{ mysqldb_name }}';"

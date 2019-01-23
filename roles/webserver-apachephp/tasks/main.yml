@@ -15,7 +15,6 @@
   apt: name=php-gd state=latest
 - name: Install php-pear
   apt: name=php-pear state=latest
-#- apt: name=pdo_mysql state=latest
 - name: Enable mod_rewrite and restart apache
   shell: |
     sudo a2enmod rewrite

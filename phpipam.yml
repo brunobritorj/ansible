@@ -17,7 +17,6 @@
       ansible_become: true
 
 - hosts: "new-azurevm"
-  sudo: yes
   vars_files:
     - phpipam-vars.yml
   roles:
