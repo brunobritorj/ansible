@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars_files:
+    - external_vars.yml
+  roles:
+  - azure-resourcegroup
+  - azure-vm
+
+  tasks:
+  - add_host:
+      hostname: "{{ output_ip_address.state.ip_address }}"
+      groups: "new-azurevm"
+      ansible_user: azureuser
+      ansible_become: true
+
+- hosts: "new-azurevm"
+  vars_files:
+    - external_vars.yml
+  roles:
+  - webserver-apachephp
+  - phpipam
