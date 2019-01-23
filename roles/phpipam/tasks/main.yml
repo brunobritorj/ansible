@@ -7,3 +7,23 @@
   copy:
     src: /var/www/phpipam/config.dist.php
     dest: /var/www/phpipam/config.php
+- name: Edit db config file - DB host
+  lineinfile:
+    path: /var/www/phpipam/config.php
+    regexp: "^$db['host'] = 'localhost';"
+    line: "$db['host'] = '{{ mysqlserver_name }}';"
+- name: Edit db config file - DB Username
+  lineinfile:
+    path: /var/www/phpipam/config.php
+    regexp: "^$db['user'] = 'phpipam';"
+    line: "$db['user'] = '{{ admin_username }}';"
+- name: Edit db config file - Password
+  lineinfile:
+    path: /var/www/phpipam/config.php
+    regexp: "^$db['pass'] = 'phpipamadmin';"
+    line: "$db['pass'] = '{{ admin_password }}';"
+- name: Edit db config file - DB name
+  lineinfile:
+    path: /var/www/phpipam/config.php
+    regexp: "^$db['name'] = 'phpipam';="
+    line: "$db['name'] = '{{ mysqldb_name }}';"
