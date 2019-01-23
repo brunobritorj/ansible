@@ -1,5 +1,0 @@
-- hosts: "phpipam"
-  vars_files:
-    - vars-phpipam.yml
-  roles:
-  - phpipam
