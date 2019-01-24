@@ -16,7 +16,7 @@
   replace:
     path: /var/www/phpipam/config.php
     regexp: "user'] = 'phpipam';"
-    replace: "user'] = '{{ admin_username }}@{{ mysqlserver_name }}.mysql.database.azure.com';"
+    replace: "user'] = '{{ admin_username }}@{{ mysqlserver_name }}';"
 - name: Edit db config file - Password
   replace:
     path: /var/www/phpipam/config.php
@@ -36,3 +36,6 @@
   shell: |
     sudo systemctl restart apache2
     exit 0
+- name: Service available
+  debug:
+    msg: "phpIPAM is available on http://{{ output_ip_address.state.ip_address }}"
