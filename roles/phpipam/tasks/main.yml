@@ -4,9 +4,7 @@
     repo: https://github.com/phpipam/phpipam.git
     dest: /var/www/phpipam
 - name: Copy database config file
-  shell: |
-    sudo cp /var/www/phpipam/config.dist.php /var/www/phpipam/config.php
-    exit 0
+  shell: "sudo cp /var/www/phpipam/config.dist.php /var/www/phpipam/config.php"
 - name: Edit db config file - DB host
   replace:
     path: /var/www/phpipam/config.php
@@ -33,6 +31,6 @@
     regexp: "DocumentRoot /var/www/html"
     replace: "DocumentRoot /var/www/phpipam"
 - name: Deploy database
-  shell: "mysql -u king@myc-dsr01 -h myc-dsr01.mysql.database.azure.com -pChall2019 phpipam < /var/www/phpipam/db/SCHEMA.sql"
+  shell: "mysql -u {{ admin_username }}@{{ mysqlserver_name }} -h {{ mysqlserver_name }}.mysql.database.azure.com -p{{ admin_password }} {{ mysqldb_name }} < /var/www/phpipam/db/SCHEMA.sql"
 - name: Restart apache
   shell: "sudo systemctl restart apache2"
