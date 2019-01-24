@@ -16,6 +16,7 @@
       groups: "new-azurevm"
       ansible_user: azureuser
       ansible_become: true
+  - set_fact: vm_ip="{{ output_ip_address.state.ip_address }}" #
   - name: Notification
     debug:
       msg: "Accessing new Azure VM to start installing phpIPAM."
@@ -30,4 +31,4 @@
   tasks:
   - name: Service available message
     debug:
-      msg: "phpIPAM is available on http://{{ hostvars['localhost']['output_ip_address.state.ip_address'] }} with username 'admin' and password 'ipamadmin'."
+      msg: "phpIPAM is available on http://{{ hostvars['localhost']['vm_ip'] }} with username 'admin' and password 'ipamadmin'."
