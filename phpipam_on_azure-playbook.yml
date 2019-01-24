@@ -3,7 +3,7 @@
   connection: local
   gather_facts: False
   vars_files:
-    - phpipam-vars.yml
+    - phpipam_on_azure-vars.yml
   roles:
   - azure-resourcegroup
   - azure-vm
@@ -22,7 +22,7 @@
 
 - hosts: "new-azurevm"
   vars_files:
-    - phpipam-vars.yml
+    - phpipam_on_azure-vars.yml
   roles:
   - webserver-apachephp
   - phpipam
@@ -30,4 +30,4 @@
   tasks:
   - name: Service available message
     debug:
-      msg: "phpIPAM is available on http://{{ hostsvar['localhost']['output_ip_address.state.ip_address'] }} with username 'admin' and password 'ipamadmin'."
+      msg: "phpIPAM is available on http://{{ hostvars['localhost']['output_ip_address.state.ip_address'] }} with username 'admin' and password 'ipamadmin'."
