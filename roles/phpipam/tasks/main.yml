@@ -32,10 +32,11 @@
     path: /etc/apache2/sites-available/000-default.conf
     regexp: "DocumentRoot /var/www/html"
     replace: "DocumentRoot /var/www/phpipam"
+- name: Deploy database
+  shell: |
+    mysql -u "{{ admin_username }}@{{ mysqlserver_name }}" -h "{{ mysqlserver_name }}.mysql.database.azure.com" -p "{{ admin_password }}" phpipam < /var/www/phpipam/db/SCHEMA.sql
+    exit 0
 - name: Restart apache
   shell: |
     sudo systemctl restart apache2
     exit 0
-- name: Service available
-  debug:
-    msg: "phpIPAM is available on http://{{ output_ip_address.state.ip_address }}"

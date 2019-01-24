@@ -1,0 +1,20 @@
+- name: Deploy database
+  shell: |
+    mysql -u king@myc-dsr01 -h myc-dsr01.mysql.database.azure.com -p phpipam < /var/www/phpipam/db/SCHEMA.sql
+    exit 0
+
+
+- name: Enable mod_rewrite and restart apache
+  shell: |
+    sudo a2enmod rewrite
+    sudo systemctl restart apache2
+    exit 0
+
+- name: Deploy database
+  mysql_db:
+    name: phpipam
+    login_host: "{{ mysqlserver_name }}.mysql.database.azure.com"
+    login_user: "{{ admin_username }}@{{ mysqlserver_name }}"
+    login_password: "{{ admin_password }}"
+    state: import
+    target: /var/www/phpipam/db/SCHEMA.sql

@@ -22,3 +22,8 @@
   roles:
   - webserver-apachephp
   - phpipam
+
+  tasks:
+  - name: Service available
+    debug:
+      msg: "phpIPAM is available on http://{{ output_ip_address.state.ip_address }}"

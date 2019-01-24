@@ -15,8 +15,11 @@
   apt: name=php-gd state=latest
 - name: Install php-pear
   apt: name=php-pear state=latest
-- name: Enable mod_rewrite and restart apache
+- name: Install mysql-client
+  apt: name=mysql-client-core-5.7 state=latest
+- name: Enabled mod_rewrite
+  apache2_module: name=rewrite state=present
+- name: Restart apache
   shell: |
-    sudo a2enmod rewrite
     sudo systemctl restart apache2
     exit 0
