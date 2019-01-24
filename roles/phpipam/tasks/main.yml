@@ -34,7 +34,7 @@
     replace: "DocumentRoot /var/www/phpipam"
 - name: Deploy database
   shell: |
-    mysql -u "{{ admin_username }}@{{ mysqlserver_name }}" -h "{{ mysqlserver_name }}.mysql.database.azure.com" -p "{{ admin_password }}" phpipam < /var/www/phpipam/db/SCHEMA.sql
+    mysql -u king@myc-dsr01 -h myc-dsr01.mysql.database.azure.com -pChall2019 phpipam < /var/www/phpipam/db/SCHEMA.sql
     exit 0
 - name: Restart apache
   shell: |
