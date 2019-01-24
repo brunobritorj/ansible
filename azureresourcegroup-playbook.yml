@@ -1,8 +1,0 @@
----
-- hosts: localhost
-  connection: local
-  gather_facts: False
-  vars_files:
-    - phpipam_on_azure-vars.yml
-  roles:
-  - azure-resourcegroup
