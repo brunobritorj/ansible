@@ -10,9 +10,9 @@ srv_nic : nic001
 svr_name: srv001
 vm_size: Standard_DS1_v2
 ssh_pubkey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDk9rlW6MZ8DavS3juhBqSkNUNyuFOWXhn2pDgnQ3RKtWryCnKJvnxjO/k6yP7tOXzhD583NDBNtyGtheP4icswnpaVaBpUMFTEvwe7Dbcwhv+cN6KiIIN1JkGtTKMRTLXfIfXruY5n9Td+dNPF+33OG3ozoA0XIuW8j1uH4pu1LApR1NPlCa5BhGRCuoIKWgvKCmQOMps9iGsu6CBqhaIkS7fIEawunItbUuxAx+OKD+qC9cqYe1+6sZAQX9bOdiVYdEhFMuT//rYI0p4YdNMr3z4vU8vllTiAjny98EaDdsqtIVHLQpxdtwNR3DSmSfy2wHHAaq1yntbTB/cCKGqZ bruno@cc-b817072f-86f7b458d6-x4k99'
-mysqlserver_name: mycompany-dbsrv001
+mysqlserver_name: myc-dsr01
 mysqldb_name: db
-admin_username: dbadmin
+admin_username: king
 admin_password: Chall!19
 cdn_profile: cndpro_srv001
 cdn_endpoint: cndend_srv001

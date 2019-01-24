@@ -7,11 +7,6 @@
   shell: |
     sudo cp /var/www/phpipam/config.dist.php /var/www/phpipam/config.php
     exit 0
-- name: Change apache website root folder
-  replace:
-    path: /etc/apache2/sites-available/000-default.conf
-    regexp: "DocumentRoot /var/www/html"
-    replace: "DocumentRoot /var/www/phpipam"
 - name: Edit db config file - DB host
   replace:
     path: /var/www/phpipam/config.php
@@ -32,3 +27,12 @@
     path: /var/www/phpipam/config.php
     regexp: "name'] = 'phpipam';="
     replace: "name'] = '{{ mysqldb_name }}';"
+- name: Change apache website root folder
+  replace:
+    path: /etc/apache2/sites-available/000-default.conf
+    regexp: "DocumentRoot /var/www/html"
+    replace: "DocumentRoot /var/www/phpipam"
+- name: Restart apache
+  shell: |
+    sudo systemctl restart apache2
+    exit 0
