@@ -33,10 +33,6 @@
     regexp: "DocumentRoot /var/www/html"
     replace: "DocumentRoot /var/www/phpipam"
 - name: Deploy database
-  shell: |
-    mysql -u king@myc-dsr01 -h myc-dsr01.mysql.database.azure.com -pChall2019 phpipam < /var/www/phpipam/db/SCHEMA.sql
-    exit 0
+  shell: "mysql -u king@myc-dsr01 -h myc-dsr01.mysql.database.azure.com -pChall2019 phpipam < /var/www/phpipam/db/SCHEMA.sql"
 - name: Restart apache
-  shell: |
-    sudo systemctl restart apache2
-    exit 0
+  shell: "sudo systemctl restart apache2"

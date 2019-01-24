@@ -20,6 +20,4 @@
 - name: Enabled mod_rewrite
   apache2_module: name=rewrite state=present
 - name: Restart apache
-  shell: |
-    sudo systemctl restart apache2
-    exit 0
+  shell: "sudo systemctl restart apache2"
