@@ -6,7 +6,7 @@ My goal is to expand this repo with my ansible toolkit.
  
 ## Version 1.0
 
-The 1.0 version brings you a phpIPAM instalation on Azure cloud using Ubuntu 18.04LTS on Azure VM and Azure MySQL (PaaS).
+The 1.0 version brings you a phpIPAM instalation on Microsoft Azure cloud using Ubuntu 18.04LTS on Azure VM and Azure MySQL (PaaS).
 
 You can also utilize these roles:
 - **azure-resourcegroup**: Create a resource group on Microsoft Azure subscription.
