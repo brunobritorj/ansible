@@ -16,6 +16,6 @@ You can also utilize these roles:
 - **phpipam**: Deploy the [phpIPAM](https://phpipam.net/) application to a Linux host.
 
 To launch it in your environment, edit vars in **phpipam_on_azure-vars.yml** file and then run:
-'''
+```bash
 $ ansible-playbook ansible/phpipam_on_azure.yml
-'''
+```
