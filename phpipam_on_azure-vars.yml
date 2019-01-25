@@ -9,10 +9,8 @@ net_sec_group : nsg001
 srv_nic : nic001
 svr_name: srv001
 vm_size: Standard_DS1_v2
-ssh_pubkey: <your_ssh_keys_here> # You have to change at least this var!
+ssh_pubkey: <your_ssh_keys_here> # You MUST change at least this var!
 mysqlserver_name: myc-dsr01
 mysqldb_name: phpipam
 admin_username: king
 admin_password: GreatYear2019
-#cdn_profile: cndpro_srv001
-#cdn_endpoint: cndend_srv001
