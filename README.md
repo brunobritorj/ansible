@@ -15,7 +15,7 @@ You can also utilize these roles:
 - **webserver-apachephp**: Install Apache and PHP server, and MySQL client to a Linux host (apt).
 - **phpipam**: Deploy the [phpIPAM](https://phpipam.net/) application to a Linux host.
 
-To launch it in your environment, edit vars in *phpipam_on_azure-vars.yml* file and then run:
-...
+To launch it in your environment, edit vars in **phpipam_on_azure-vars.yml** file and then run:
+'''
 $ ansible-playbook ansible/phpipam_on_azure.yml
-...
+'''
