@@ -1,0 +1,24 @@
+---
+- name: Create VM
+  azure_rm_virtualmachine:
+    resource_group: "{{ resource_group }}"
+    name: "{{ svr_name }}"
+    vm_size: "{{ vm_size }}"
+    admin_username: azureuser
+    ssh_password_enabled: false
+    ssh_public_keys:
+      - path: /home/azureuser/.ssh/authorized_keys
+        key_data: "{{ ssh_pubkey }}"
+    network_interfaces: "{{ srv_nic }}"
+    image:
+      offer: UbuntuServer
+      publisher: Canonical
+      sku: '18.04-LTS'
+      version: latest
+    data_disks:
+      - lun: 0
+        disk_size_gb: 4
+        managed_disk_type: Standard_LRS
+      - lun: 1
+        disk_size_gb: 8
+        managed_disk_type: Premium_LRS
