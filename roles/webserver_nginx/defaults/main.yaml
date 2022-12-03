@@ -1,0 +1,17 @@
+# Global config
+
+nginx_sites_available_dir: /etc/nginx/sites-available
+nginx_sites_enabled_dir: /etc/nginx/sites-enabled
+
+# AppX config
+
+site_appx_config_file: site_appx_config
+site_appx_hostname: appx.domain.local
+site_appx_dir: /var/www/appx.domain.local
+site_appx_access_log: /var/log/nginx/appx.access.log
+site_appx_error_log: /var/log/nginx/appx.error.log
+
+site_appx_http: true
+site_appx_https: false
+site_appx_https_cert: /etc/ssl/certs/nginx-selfsigned.crt
+site_appx_https_key: /etc/ssl/private/nginx-selfsigned.key

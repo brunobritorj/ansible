@@ -1,0 +1,27 @@
+server {
+
+{% if site_appx_http %}
+        listen 80;
+        listen [::]:80;
+{% endif %}
+
+{% if site_appx_https %}
+        listen 443 ssl;
+        listen [::]:443 ssl;
+        ssl_certificate {{ site_appx_https_cert }};
+        ssl_certificate_key {{ site_appx_https_key }};
+{% endif %}
+
+        access_log {{ site_appx_access_log }};
+        error_log {{ site_appx_error_log }};
+
+        server_name {{ site_appx_hostname }};
+
+        root {{ site_appx_dir }};
+        index index.html;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+}

@@ -1,0 +1,34 @@
+- name: Remove default site on NGINX
+  file:
+    dest: "{{nginx_sites_enabled_dir}}/default"
+    state: absent
+  notify: Restart NGINX
+
+- name: Create a directory for APPX files if it does not exist
+  file:
+    path: "{{site_appx_dir}}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0755
+
+- name: Configure APPX site on NGINX
+  template:
+    src: "{{site_appx_config_file}}.j2"
+    dest: "{{nginx_sites_available_dir}}/{{site_appx_config_file}}"
+    owner: root
+    group: root
+    mode: 0644 
+  notify: Restart NGINX
+
+- name: Configure symlink for APPX
+  file:
+    src: "{{nginx_sites_available_dir}}/{{site_appx_config_file}}"
+    dest: "{{nginx_sites_enabled_dir}}/{{site_appx_config_file}}"
+    state: link
+  notify: Restart NGINX
+
+- name: Single page for test purposes
+  copy:
+    content: '{"response":"pong"}'
+    dest: "{{site_appx_dir}}/ping.json"
