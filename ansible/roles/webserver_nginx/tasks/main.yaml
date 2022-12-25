@@ -1,0 +1,10 @@
+- name: Check OS compatibility
+  when: ansible_os_family not in [ 'Debian' ] #'RedHat'
+  fail:
+    msg: "OS family '{{ansible_os_family}}' not supported."
+
+- include_tasks: "{{ansible_os_family}}.yaml"
+  tags: install
+
+- include_tasks: config.yaml
+  tags: config
