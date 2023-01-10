@@ -1,4 +1,4 @@
-- hosts: webserver_nginx
+- hosts: "{{ variable_host | default('webserver_nginx') }}"
   become: yes
   roles:
   - webserver_nginx
